@@ -1,5 +1,7 @@
 package by.moa.crydev.helpapp.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,26 +19,27 @@ import by.moa.crydev.helpapp.R;
 import by.moa.crydev.helpapp.activities.fragments.PlaceholderFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     public static final String LOG_TAG = "MainActivity";
+
+    NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (mNavigationView != null) {
+            mNavigationView.setNavigationItemSelectedListener(this);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            });
+            fab.setOnClickListener(this);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -46,11 +49,6 @@ public class MainActivity extends AppCompatActivity
             drawer.setDrawerListener(toggle);
         }
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            navigationView.setNavigationItemSelectedListener(this);
-        }
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -98,11 +96,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_manage) {
-            // Handle the camera action
-        } else if (id == R.id.nav_number) {
 
-        } else if (id == R.id.nav_share) {
+            Snackbar.make(mNavigationView, "No settings activity for now", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (id == R.id.nav_facebook) {
 
+        } else if (id == R.id.nav_twitter) {
+
+        } else if (id == R.id.nav_inquiry) {
+
+            startDialActivity("80172263239");
+        } else if (id == R.id.nav_reception) {
+
+            startDialActivity("80172263299");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -110,5 +116,24 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
+    }
+
+    private void startDialActivity(String phone){
+
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phone));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        int id = v.getId();
+        switch (id) {
+            case R.id.fab:
+                Snackbar.make(v, "No action for now", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                break;
+        }
     }
 }

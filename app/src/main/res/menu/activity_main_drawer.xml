@@ -5,18 +5,32 @@
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/drawler_settings" />
+            android:title="@string/drawer_settings" />
     </group>
 
-    <item android:title="@string/drawler_connect">
+    <item android:title="@string/drawer_social_nets">
         <menu>
             <item
-                android:id="@+id/nav_number"
-                android:title="@string/drawler_number" />
+                android:id="@+id/nav_facebook"
+                android:icon="@drawable/facebook"
+                android:title="@string/drawer_facebook" />
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/drawler_share" />
+                android:id="@+id/nav_twitter"
+                android:icon="@drawable/twitter"
+                android:title="@string/drawer_twitter" />
+        </menu>
+    </item>
+
+    <item android:title="@string/drawer_connect">
+        <menu>
+            <item
+                android:id="@+id/nav_inquiry"
+                android:icon="@drawable/inquiry"
+                android:title="@string/drawer_number_inquiry" />
+            <item
+                android:id="@+id/nav_reception"
+                android:icon="@drawable/reception"
+                android:title="@string/drawer_number_reception" />
         </menu>
     </item>
 
