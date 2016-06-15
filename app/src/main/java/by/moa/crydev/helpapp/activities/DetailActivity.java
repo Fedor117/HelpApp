@@ -1,10 +1,11 @@
 package by.moa.crydev.helpapp.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.webkit.WebView;
 
 import by.moa.crydev.helpapp.R;
 import by.moa.crydev.helpapp.activities.fragments.DetailFragment;
@@ -47,4 +48,14 @@ public class DetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+
+        WebView webView = DetailFragment.getWebView();
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

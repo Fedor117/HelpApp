@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import by.moa.crydev.helpapp.R;
+import controller.CustomWebViewClient;
 
 public class DetailFragment extends Fragment {
 
     public static final String LOG_TAG = "DetailFragment";
     public static final String RAW_ASSET_DIR = "file:///android_res/raw/";
 
-    private WebView mWebView;
+    private static WebView mWebView;
 
     public DetailFragment() {
     }
@@ -42,6 +43,7 @@ public class DetailFragment extends Fragment {
         String path = findHtml(serviceStr);
 
         mWebView = (WebView) rootView.findViewById(R.id.webView);
+        mWebView.setWebViewClient(new CustomWebViewClient());
         mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.getSettings().setUseWideViewPort(true);
         mWebView.loadUrl(path);
@@ -57,7 +59,7 @@ public class DetailFragment extends Fragment {
                     + "а также возникновения, перехода, прекращения прав на недвижимое "
                     + "имущество и сделок с ним":
                 responsePath = RAW_ASSET_DIR.concat("state_reg.html");
-            break;
+                break;
             case "Техническая инвентаризация сооружений":
                 responsePath = RAW_ASSET_DIR.concat("tech_inv_buildings.html");
                 break;
@@ -72,4 +74,10 @@ public class DetailFragment extends Fragment {
 
         return responsePath;
     }
+
+    public static WebView getWebView() {
+        return mWebView;
+    }
+
+
 }
