@@ -17,6 +17,7 @@ import android.view.View;
 
 import by.moa.crydev.helpapp.R;
 import by.moa.crydev.helpapp.activities.fragments.PlaceholderFragment;
+import by.moa.crydev.helpapp.activities.fragments.TweetFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -101,8 +102,12 @@ public class MainActivity extends AppCompatActivity
                     .setAction("Action", null).show();
         } else if (id == R.id.nav_facebook) {
 
+            Intent intent = new Intent(this, FacebookActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_twitter) {
 
+            Intent intent = new Intent(this, TweetActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_inquiry) {
 
             startDialActivity("80172263239");

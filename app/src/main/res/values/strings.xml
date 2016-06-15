@@ -22,6 +22,8 @@
         «Минское областное агентство по государственной регистрации и земельному кадастру»</string>
     <string name="company_email">d600@nca.by</string>
     <string name="hello_world">Hello, world!</string>
+    <string name="title_activity_tweet">TweetActivity</string>
+    <string name="title_activity_facebook">FacebookActivity</string>
 
 
 </resources>
