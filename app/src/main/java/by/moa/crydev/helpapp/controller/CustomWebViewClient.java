@@ -1,4 +1,4 @@
-package controller;
+package by.moa.crydev.helpapp.controller;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;

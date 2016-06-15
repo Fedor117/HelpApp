@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import by.moa.crydev.helpapp.R;
-import controller.CustomWebViewClient;
+import by.moa.crydev.helpapp.controller.CustomWebViewClient;
 
 public class DetailFragment extends Fragment {
 
@@ -78,6 +78,5 @@ public class DetailFragment extends Fragment {
     public static WebView getWebView() {
         return mWebView;
     }
-
 
 }
