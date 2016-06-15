@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,17 @@ import by.moa.crydev.helpapp.activities.DetailActivity;
  */
 public class PlaceholderFragment extends Fragment {
 
+    public static final String LOG_TAG = "PlaceholderFragment";
+
+    private String[] data = {
+            "Государственная регистрация создания, изменения, прекращения существования, "
+                    + "а также возникновения, перехода, прекращения прав на недвижимое "
+                    + "имущество и сделок с ним",
+            "Техническая инвентаризация сооружений",
+            "Землеустроительные и геодезические работы",
+            "Независимая оценка имущества"
+    };
+
     ArrayAdapter<String> mServiceAdapter;
 
     public PlaceholderFragment() {
@@ -31,15 +43,7 @@ public class PlaceholderFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        String[] data = {
-                "Государственная регистрация создания, изменения, прекращения существования, "
-                    + "а также возникновения, перехода, прекращения прав на недвижимое "
-                    + "имущество и сделок с ним",
-                "Техническая инвентаризация недвижимости",
-                "Техническая инвентаризация сооружений",
-                "Землеустроительные и геодезические работы",
-                "Независимая оценка имущества"
-        };
+
         List<String> services = new ArrayList<>(Arrays.asList(data));
 
         mServiceAdapter =
@@ -57,6 +61,7 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String service = mServiceAdapter.getItem(position);
+                Log.d(LOG_TAG, service);
                 Intent intent = new Intent(getActivity(), DetailActivity.class)
                         .putExtra(Intent.EXTRA_TEXT, service);
                 startActivity(intent);

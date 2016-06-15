@@ -11,6 +11,8 @@ import by.moa.crydev.helpapp.activities.fragments.DetailFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
+    public static final String LOG_TAG = "DetailActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
