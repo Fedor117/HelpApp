@@ -24,15 +24,6 @@
             android:name=".activities.DetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.TweetActivity"
-            android:label="@string/title_activity_tweet"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="activities.MainActivity" />
-        </activity>
-        <activity
             android:name=".activities.FacebookActivity"
             android:label="@string/title_activity_facebook"
             android:parentActivityName=".activities.MainActivity"
@@ -41,6 +32,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="activities.MainActivity" />
         </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ed8c4d139e37a0b5415c9c4c5fcbd72e9fdcf0d6" />
+
+        <activity android:name=".activities.TwitterActivity"></activity>
     </application>
 
 </manifest>
