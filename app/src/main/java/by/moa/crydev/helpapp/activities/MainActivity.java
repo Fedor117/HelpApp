@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     public static final String LOG_TAG = "MainActivity";
+    public static final String INQUIRY_NUMBER = "80172263239";
+    public static final String RECEPTION_NUMBER = "80172263299";
+    public static final String LATITUDE = "53.885585";
+    public static final String LONGITUDE = "27.520452";
 
     private NavigationView mNavigationView;
     private boolean exit = false;
@@ -75,10 +79,10 @@ public class MainActivity extends AppCompatActivity
             }
             finish();
         } else {
-            Snackbar.make(mNavigationView,
-                    getResources().getString(R.string.exit_app_snack),
+            Snackbar.make(mNavigationView, getResources().getString(R.string.exit_app_snack),
                     Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show();
+                    .setAction("Action", null)
+                    .show();
 
             exit = true;
 
@@ -123,8 +127,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_manage) {
-            Snackbar.make(mNavigationView, "No settings activity for now", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Snackbar.make(mNavigationView, "No settings activity for now", Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null)
+                    .show();
         } else if (id == R.id.nav_facebook) {
             Intent intent = new Intent(this, FacebookActivity.class);
             startActivity(intent);
@@ -132,9 +137,9 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, TwitterActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_inquiry) {
-            startDialActivity("80172263239");
+            startDialActivity(INQUIRY_NUMBER);
         } else if (id == R.id.nav_reception) {
-            startDialActivity("80172263299");
+            startDialActivity(RECEPTION_NUMBER);
         } else if (id == R.id.nav_map) {
             openPreferredLocationInMap();
         }
@@ -159,23 +164,29 @@ public class MainActivity extends AppCompatActivity
         int id = v.getId();
         switch (id) {
             case R.id.fab:
-                Snackbar.make(v, "No action for now", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(v, "No action for now", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null)
+                        .show();
                 break;
         }
     }
 
     private void openPreferredLocationInMap() {
-        String lat = "53.885585";
-        String lng = "27.520452";
+
         String label = getResources().getString(R.string.address_street);
-        Uri uri = Uri.parse("geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + label + ")");
+        Uri uri = Uri.parse("geo:" + LATITUDE + "," + LONGITUDE + "?q=" + LATITUDE + ","
+                + LONGITUDE + "(" + label + ")");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         } else {
-            Log.d(LOG_TAG, "Couldn't call " + lat + " " +  lng + ", no receiving apps installed!");
+            Snackbar.make(mNavigationView, getResources().getString(R.string.no_maps_snack),
+                    Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+            Log.d(LOG_TAG, "Couldn't call " + LATITUDE + " " +  LONGITUDE
+                    + ", no receiving apps installed!");
         }
     }
 
