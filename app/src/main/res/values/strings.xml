@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">HelpApp</string>
+    <string name="name_company">РУП "Минское областное агентство по государственной регистрации и земельному кадастру"</string>
+    <string name="email_company">d600@nca.by</string>
+
+    <string name="launcher_activity_label">LauncherActivity</string>
     <string name="main_activity_label">Услуги</string>
+    <string name="detail_activity_label">DetailActivity</string>
+    <string name="twitter_activity_label">TweetActivity</string>
+    <string name="facebook_activity_label">FacebookActivity</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="exit_app_snack">Вы действительно желаете выйти из приложения? Для выхода нажмите еще раз.</string>
 
     <string name="action_settings">Settings</string>
     <string name="drawer_settings">Настройки</string>
@@ -15,15 +25,11 @@
     <string name="drawer_contacts">Контакты</string>
     <string name="drawer_number_inquiry">Справочная</string>
     <string name="drawer_number_reception">Приемная</string>
-
+    <string name="drawer_map">Показать на карте</string>
     <string name="drawer_share">Поделиться</string>
 
-    <string name="company_name">РУП
-        «Минское областное агентство по государственной регистрации и земельному кадастру»</string>
-    <string name="company_email">d600@nca.by</string>
-    <string name="hello_world">Hello, world!</string>
-    <string name="title_activity_tweet">TweetActivity</string>
-    <string name="title_activity_facebook">FacebookActivity</string>
+    <string name="address_street">Папанина, 7</string>
 
+    <string name="hello_world">Hello, world!</string>
 
 </resources>

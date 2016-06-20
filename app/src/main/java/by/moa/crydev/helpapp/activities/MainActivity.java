@@ -3,6 +3,7 @@ package by.moa.crydev.helpapp.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -11,9 +12,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import by.moa.crydev.helpapp.R;
 import by.moa.crydev.helpapp.activities.fragments.PlaceholderFragment;
@@ -23,7 +26,9 @@ public class MainActivity extends AppCompatActivity
 
     public static final String LOG_TAG = "MainActivity";
 
-    NavigationView mNavigationView;
+    private NavigationView mNavigationView;
+    private boolean exit = false;
+    private long exitTime = 3000L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +65,29 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+
+        if (exit) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
+            finish();
         } else {
-            super.onBackPressed();
+            Snackbar.make(mNavigationView,
+                    getResources().getString(R.string.exit_app_snack),
+                    Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
+
+            exit = true;
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, exitTime);
         }
     }
 
@@ -100,23 +123,20 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_manage) {
-
             Snackbar.make(mNavigationView, "No settings activity for now", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         } else if (id == R.id.nav_facebook) {
-
             Intent intent = new Intent(this, FacebookActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_twitter) {
-
             Intent intent = new Intent(this, TwitterActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_inquiry) {
-
             startDialActivity("80172263239");
         } else if (id == R.id.nav_reception) {
-
             startDialActivity("80172263299");
+        } else if (id == R.id.nav_map) {
+            openPreferredLocationInMap();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -144,4 +164,19 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
     }
+
+    private void openPreferredLocationInMap() {
+        String lat = "53.885585";
+        String lng = "27.520452";
+        String label = getResources().getString(R.string.address_street);
+        Uri uri = Uri.parse("geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + label + ")");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d(LOG_TAG, "Couldn't call " + lat + " " +  lng + ", no receiving apps installed!");
+        }
+    }
+
 }

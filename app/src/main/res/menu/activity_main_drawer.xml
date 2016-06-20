@@ -31,6 +31,10 @@
                 android:id="@+id/nav_reception"
                 android:icon="@drawable/reception"
                 android:title="@string/drawer_number_reception" />
+            <item
+                android:id="@+id/nav_map"
+                android:icon="@drawable/map_marker"
+                android:title="@string/drawer_map" />
         </menu>
     </item>
 
