@@ -16,6 +16,12 @@ public class DetailFragment extends Fragment {
 
     public static final String LOG_TAG = "DetailFragment";
     public static final String RAW_ASSET_DIR = "file:///android_res/raw/";
+    public static final String STATE_REG = "Государственная регистрация создания, изменения, прекращения существования, "
+            + "а также возникновения, перехода, прекращения прав на недвижимое "
+            + "имущество и сделок с ним";
+    public static final String TECH_INV_BUILDINGS = "Техническая инвентаризация сооружений";
+    public static final String LAND_MANAGEMENT = "Землеустроительные и геодезические работы";
+    public static final String ASSESSMENT = "Независимая оценка имущества";
 
     private static WebView mWebView;
 
@@ -34,7 +40,6 @@ public class DetailFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        // The detail Activity called via intent.  Inspect the intent for forecast data.
         Intent intent = getActivity().getIntent();
         String serviceStr = "";
         if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
@@ -55,18 +60,16 @@ public class DetailFragment extends Fragment {
 
         String responsePath = "";
         switch (serviceStr) {
-            case "Государственная регистрация создания, изменения, прекращения существования, "
-                    + "а также возникновения, перехода, прекращения прав на недвижимое "
-                    + "имущество и сделок с ним":
+            case STATE_REG:
                 responsePath = RAW_ASSET_DIR.concat("state_reg.html");
                 break;
-            case "Техническая инвентаризация сооружений":
+            case TECH_INV_BUILDINGS:
                 responsePath = RAW_ASSET_DIR.concat("tech_inv_buildings.html");
                 break;
-            case "Землеустроительные и геодезические работы":
+            case LAND_MANAGEMENT:
                 responsePath = RAW_ASSET_DIR.concat("land_management.html");
                 break;
-            case "Независимая оценка имущества":
+            case ASSESSMENT:
                 responsePath = RAW_ASSET_DIR.concat("assessment.html");
                 break;
         }
