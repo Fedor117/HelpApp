@@ -32,5 +32,6 @@
     <string name="address_street">Папанина, 7</string>
 
     <string name="hello_world">Hello, world!</string>
+    <string name="tweets_dafault_text">Соединение…</string>
 
 </resources>

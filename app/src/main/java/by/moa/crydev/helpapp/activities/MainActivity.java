@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import by.moa.crydev.helpapp.R;
 import by.moa.crydev.helpapp.activities.fragments.PlaceholderFragment;
@@ -45,11 +44,6 @@ public class MainActivity extends AppCompatActivity
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         if (mNavigationView != null) {
             mNavigationView.setNavigationItemSelectedListener(this);
-        }
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        if (fab != null) {
-            fab.setOnClickListener(this);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -126,11 +120,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_manage) {
-            Snackbar.make(mNavigationView, "No settings activity for now", Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null)
-                    .show();
-        } else if (id == R.id.nav_facebook) {
+        if (id == R.id.nav_facebook) {
             Intent intent = new Intent(this, FacebookActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_twitter) {

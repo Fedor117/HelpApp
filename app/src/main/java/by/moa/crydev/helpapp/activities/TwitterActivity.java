@@ -1,32 +1,15 @@
 package by.moa.crydev.helpapp.activities;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.AppSession;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.core.TwitterCore;
-import com.twitter.sdk.android.core.TwitterException;
-import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.tweetui.CompactTweetView;
-import com.twitter.sdk.android.tweetui.LoadCallback;
 import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
-import com.twitter.sdk.android.tweetui.TweetUtils;
-import com.twitter.sdk.android.tweetui.TweetViewFetchAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
-
-import java.util.Arrays;
-import java.util.List;
 
 import by.moa.crydev.helpapp.R;
 import io.fabric.sdk.android.Fabric;
