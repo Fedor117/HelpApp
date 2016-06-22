@@ -1,15 +1,16 @@
 package by.moa.crydev.helpapp.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity
     public static final String RECEPTION_NUMBER = "80172263299";
     public static final String LATITUDE = "53.885585";
     public static final String LONGITUDE = "27.520452";
+    public static final String REQUISITES = "ЦБУ № 537 ОАО \"Белинвестбанк\" г. Минск код 739 \n" +
+            " Р/С 3012002133710 \n" +
+            " УНП 600013237 \n" +
+            " ОКПО 37402696 \n" +
+            " МФО 153001739 ";
 
     private NavigationView mNavigationView;
     private boolean exit = false;
@@ -93,7 +99,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -106,9 +111,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -132,6 +134,20 @@ public class MainActivity extends AppCompatActivity
             startDialActivity(RECEPTION_NUMBER);
         } else if (id == R.id.nav_map) {
             openPreferredLocationInMap();
+        } else if (id == R.id.nav_email) {
+            sendEmail();
+        } else if (id == R.id.nav_requisites) {
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle(getResources().getString(R.string.drawer_requisites));
+            alertDialog.setMessage(REQUISITES);
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,
+                    getResources().getString(R.string.dialog_close),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -153,11 +169,7 @@ public class MainActivity extends AppCompatActivity
 
         int id = v.getId();
         switch (id) {
-            case R.id.fab:
-                Snackbar.make(v, "No action for now", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null)
-                        .show();
-                break;
+
         }
     }
 
@@ -178,6 +190,14 @@ public class MainActivity extends AppCompatActivity
             Log.d(LOG_TAG, "Couldn't call " + LATITUDE + " " +  LONGITUDE
                     + ", no receiving apps installed!");
         }
+    }
+
+    private void sendEmail() {
+
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"
+                + getResources().getString(R.string.email_company)));
+        startActivity(Intent.createChooser(emailIntent,
+                getResources().getString(R.string.chooser_text_email)));
     }
 
 }

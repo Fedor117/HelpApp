@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">HelpApp</string>
-    <string name="name_company">РУП "Минское областное агентство по государственной регистрации и земельному кадастру"</string>
+    <string name="app_name">Справка ГЗРК</string>
+    <string name="name_company">Минское областное агентство по государственной регистрации и земельному кадастру</string>
     <string name="email_company">d600@nca.by</string>
 
     <string name="launcher_activity_label">LauncherActivity</string>
@@ -26,12 +26,18 @@
     <string name="drawer_contacts">Контакты</string>
     <string name="drawer_number_inquiry">Справочная</string>
     <string name="drawer_number_reception">Приемная</string>
+    <string name="drawer_email">Электронная почта</string>
     <string name="drawer_map">Показать на карте</string>
     <string name="drawer_share">Поделиться</string>
+    
+    <string name="drawer_additional">Дополнительно</string>
+    <string name="drawer_requisites">Реквизиты</string>
 
     <string name="address_street">Папанина, 7</string>
+    <string name="chooser_text_email">Отправить email на d600@nca.by</string>
 
     <string name="hello_world">Hello, world!</string>
     <string name="tweets_dafault_text">Соединение…</string>
+    <string name="dialog_close">Закрыть</string>
 
 </resources>

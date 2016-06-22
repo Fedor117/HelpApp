@@ -25,9 +25,22 @@
                 android:icon="@drawable/reception"
                 android:title="@string/drawer_number_reception" />
             <item
+                android:id="@+id/nav_email"
+                android:icon="@drawable/email"
+                android:title="@string/drawer_email" />
+            <item
                 android:id="@+id/nav_map"
                 android:icon="@drawable/map_marker"
                 android:title="@string/drawer_map" />
+        </menu>
+    </item>
+
+    <item android:title="@string/drawer_additional">
+        <menu>
+            <item
+                android:id="@+id/nav_requisites"
+                android:icon="@drawable/requisites"
+                android:title="@string/drawer_requisites" />
         </menu>
     </item>
 

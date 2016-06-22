@@ -46,7 +46,6 @@ public class TwitterActivity extends ListActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_twitter, menu);
         return true;
     }
 
@@ -59,11 +58,6 @@ public class TwitterActivity extends ListActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-
-            Log.d(LOG_TAG, String.valueOf(id));
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
