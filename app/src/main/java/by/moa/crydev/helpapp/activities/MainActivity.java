@@ -22,7 +22,7 @@ import by.moa.crydev.helpapp.R;
 import by.moa.crydev.helpapp.activities.fragments.PlaceholderFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String LOG_TAG = "MainActivity";
     public static final String INQUIRY_NUMBER = "80172263239";
@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity
     public static final String LATITUDE = "53.885585";
     public static final String LONGITUDE = "27.520452";
     public static final String REQUISITES = "ЦБУ № 537 ОАО \"Белинвестбанк\" г. Минск код 739 \n" +
-            " Р/С 3012002133710 \n" +
-            " УНП 600013237 \n" +
-            " ОКПО 37402696 \n" +
-            " МФО 153001739 ";
+            "Р/С 3012002133710 \n" +
+            "УНП 600013237 \n" +
+            "ОКПО 37402696 \n" +
+            "МФО 153001739 ";
 
     private NavigationView mNavigationView;
     private boolean exit = false;
@@ -81,7 +81,12 @@ public class MainActivity extends AppCompatActivity
         } else {
             Snackbar.make(mNavigationView, getResources().getString(R.string.exit_app_snack),
                     Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null)
+                    .setAction(getResources().getString(R.string.snackbar_exit), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    })
                     .show();
 
             exit = true;
@@ -122,32 +127,100 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_facebook) {
-            Intent intent = new Intent(this, FacebookActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_twitter) {
+        if (id == R.id.nav_twitter) {
             Intent intent = new Intent(this, TwitterActivity.class);
             startActivity(intent);
+
         } else if (id == R.id.nav_inquiry) {
-            startDialActivity(INQUIRY_NUMBER);
+            AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                    .setTitle(getResources().getString(R.string.drawer_number_inquiry))
+                    .setMessage(getResources().getString(R.string.dialog_call_number)
+                            + " " + INQUIRY_NUMBER)
+                    .setPositiveButton(getResources().getString(R.string.dialog_call),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    startDialActivity(INQUIRY_NUMBER);
+                                }
+                            })
+                    .setNegativeButton(getResources().getString(R.string.dialog_close),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    dialog.dismiss();
+                                }
+                            })
+                    .create();
+            dialog.show();
+
         } else if (id == R.id.nav_reception) {
-            startDialActivity(RECEPTION_NUMBER);
+            AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                    .setTitle(getResources().getString(R.string.drawer_number_reception))
+                    .setMessage(getResources().getString(R.string.dialog_call_number)
+                            + " " + RECEPTION_NUMBER)
+                    .setPositiveButton(getResources().getString(R.string.dialog_call),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    startDialActivity(RECEPTION_NUMBER);
+                                }
+                            })
+                    .setNegativeButton(getResources().getString(R.string.dialog_close),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    dialog.dismiss();
+                                }
+                            })
+                    .create();
+            dialog.show();
+
         } else if (id == R.id.nav_map) {
-            openPreferredLocationInMap();
+            AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                    .setTitle(getResources().getString(R.string.drawer_map))
+                    .setMessage(getResources().getString(R.string.address_street))
+                    .setPositiveButton(getResources().getString(R.string.dialog_show),
+                            new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            openPreferredLocationInMap();
+                        }
+                    })
+                    .setNegativeButton(getResources().getString(R.string.dialog_close),
+                            new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create();
+            dialog.show();
+
         } else if (id == R.id.nav_email) {
-            sendEmail();
+            AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                    .setTitle(getResources().getString(R.string.drawer_email))
+                    .setMessage(getResources().getString(R.string.chooser_text_email))
+                    .setPositiveButton(getResources().getString(R.string.dialog_compose),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    sendEmail();
+                                }
+                            })
+                    .setNegativeButton(getResources().getString(R.string.dialog_close),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    dialog.dismiss();
+                                }
+                            })
+                    .create();
+            dialog.show();
+
         } else if (id == R.id.nav_requisites) {
-            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle(getResources().getString(R.string.drawer_requisites));
-            alertDialog.setMessage(REQUISITES);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,
+            AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).create();
+            dialog.setTitle(getResources().getString(R.string.drawer_requisites));
+            dialog.setMessage(REQUISITES);
+            dialog.setButton(AlertDialog.BUTTON_NEUTRAL,
                     getResources().getString(R.string.dialog_close),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     });
-            alertDialog.show();
+            dialog.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -162,15 +235,6 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + phone));
         startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        int id = v.getId();
-        switch (id) {
-
-        }
     }
 
     private void openPreferredLocationInMap() {

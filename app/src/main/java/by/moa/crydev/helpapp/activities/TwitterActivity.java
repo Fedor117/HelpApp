@@ -20,8 +20,8 @@ public class TwitterActivity extends ListActivity {
     public static final String TWITTER_ACCOUNT = "MOAGRZK";
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "";
-    private static final String TWITTER_SECRET = "";
+    private static final String TWITTER_KEY = "WoV68vZwxcUf6dxz4tdkoYQJh";
+    private static final String TWITTER_SECRET = "ptaMFSHhIqc1MDxTuBPSvdoCGYKwAERxCiT6xuekIpR8RzDe0E";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

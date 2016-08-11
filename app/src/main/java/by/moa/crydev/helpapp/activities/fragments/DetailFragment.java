@@ -49,8 +49,6 @@ public class DetailFragment extends Fragment {
 
         mWebView = (WebView) rootView.findViewById(R.id.webView);
         mWebView.setWebViewClient(new CustomWebViewClient());
-        mWebView.getSettings().setLoadWithOverviewMode(true);
-        mWebView.getSettings().setUseWideViewPort(true);
         mWebView.loadUrl(path);
 
         return rootView;
